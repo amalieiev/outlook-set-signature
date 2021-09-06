@@ -9,8 +9,9 @@ module.exports = async (env, options) => {
     return {
         devtool: "source-map",
         entry: {
-            autorunshared: "./src/runtime/Js/autorunshared.js",
-            autorunweb: "./src/runtime/Js/autorunweb.js",
+            autorunshared: "./src/runtime/autorunshared.js",
+            autorunweb: "./src/runtime/autorunweb.js",
+            taskpane: "./src/taskpane/taskpane.js",
         },
         resolve: {
             extensions: [".js"],
@@ -19,24 +20,19 @@ module.exports = async (env, options) => {
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 filename: "autorunweb.html",
-                template: "./src/runtime/HTML/autorunweb.html",
-                // chunks: ["taskpane"],
+                template: "./src/runtime/autorunweb.html",
+                chunks: [],
             }),
             new HtmlWebpackPlugin({
-                filename: "assignsignature.html",
-                template: "./src/taskpane/HTML/assignsignature.html",
-                // chunks: ["commands"],
-            }),
-            new HtmlWebpackPlugin({
-                filename: "editsignature.html",
-                template: "./src/taskpane/HTML/editsignature.html",
-                // chunks: ["commands"],
+                filename: "taskpane.html",
+                template: "./src/taskpane/taskpane.html",
+                chunks: [],
             }),
             new CopyWebpackPlugin({
                 patterns: [
                     {
                         to: "[name][ext]",
-                        from: "manifest*.xml",
+                        from: "manifest.xml",
                         transform(content) {
                             return content
                                 .toString()
@@ -49,18 +45,6 @@ module.exports = async (env, options) => {
                     {
                         from: "./assets",
                         to: "assets",
-                        force: true,
-                    },
-
-                    {
-                        from: "./src/taskpane/CSS",
-                        to: "css",
-                        force: true,
-                    },
-
-                    {
-                        from: "./src/taskpane/Js",
-                        to: "js",
                         force: true,
                     },
                 ],
