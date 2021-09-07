@@ -50,8 +50,8 @@
         <!-- Specify the runtime for event-based activation. -->
         <!-- For more information, see https://docs.microsoft.com/office/dev/add-ins/outlook/autolaunch -->
           <Runtimes>
-            <Runtime resid="Autorun">
-              <Override type="javascript" resid="runtimeJs"/>
+            <Runtime resid="Commands.URL">
+              <Override type="javascript" resid="Runtime.URL"/>
             </Runtime>
           </Runtimes>
 
@@ -72,30 +72,7 @@
                       <bt:Image size="80" resid="Icon16x16" />
                     </Icon>
                     <Action xsi:type="ShowTaskpane">
-                      <SourceLocation resid="residUrl0"/>
-                    </Action>
-                  </Control>
-                </Group>
-              </OfficeTab>
-            </ExtensionPoint>
-
-            <ExtensionPoint xsi:type="AppointmentOrganizerCommandSurface">
-              <OfficeTab id="TabDefault">
-                <Group id="aocsG0">
-                  <Label resid="residGL0"/>
-                  <Control xsi:type="Button" id="MRCS_TpBtn1">
-                    <Label resid="residStr0"/>
-                    <Supertip>
-                      <Title resid="residStr0"/>
-                      <Description resid="residTT0"/>
-                    </Supertip>
-                    <Icon>
-                      <bt:Image size="16" resid="Icon16x16" />
-                      <bt:Image size="32" resid="Icon16x16" />
-                      <bt:Image size="80" resid="Icon16x16" />
-                    </Icon>
-                    <Action xsi:type="ShowTaskpane">
-                      <SourceLocation resid="residUrl0"/>
+                      <SourceLocation resid="Taskpane.URL"/>
                     </Action>
                   </Control>
                 </Group>
@@ -105,10 +82,10 @@
             <!-- Specify function to call for new message and new appointment events -->
             <ExtensionPoint xsi:type="LaunchEvent">
               <LaunchEvents>
-                <LaunchEvent Type="OnNewMessageCompose" FunctionName="checkSignature" />
-                <LaunchEvent Type="OnNewAppointmentOrganizer" FunctionName="checkSignature" />
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="insertSignature" />
+                <LaunchEvent Type="OnNewAppointmentOrganizer" FunctionName="insertSignature" />
               </LaunchEvents>
-              <SourceLocation resid="Autorun" />
+              <SourceLocation resid="Commands.URL" />
             </ExtensionPoint>
 
           </DesktopFormFactor>
@@ -119,9 +96,9 @@
           <bt:Image id="Icon16x16" DefaultValue="https://{hostname}/assets/final_logo.png"></bt:Image>
         </bt:Images>
         <bt:Urls>
-          <bt:Url id="residUrl0" DefaultValue="https://{hostname}/taskpane.html"></bt:Url>
-          <bt:Url id="Autorun" DefaultValue="https://{hostname}/autorunweb.html"></bt:Url>
-          <bt:Url id="runtimeJs" DefaultValue="https://{hostname}/autorunshared.js"></bt:Url>
+          <bt:Url id="Taskpane.URL" DefaultValue="https://{hostname}/taskpane.html"></bt:Url>
+          <bt:Url id="Commands.URL" DefaultValue="https://{hostname}/commands.html"></bt:Url>
+          <bt:Url id="Runtime.URL" DefaultValue="https://{hostname}/commands.js"></bt:Url>
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="residGL0" DefaultValue="Signature Injector"></bt:String>

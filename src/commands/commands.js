@@ -1,10 +1,4 @@
-Office.initialize = function () {
-    console.log("initialize");
-};
-
-function insertSignature() {
-    console.log("insert signature");
-
+function insertSignature(event) {
     const signature = `
     <table>
       <tr>
@@ -18,9 +12,10 @@ function insertSignature() {
         signature,
         {
             coercionType: "html",
+            asyncContext: event,
         },
-        function () {
-            console.log("inserted");
+        function (asyncResult) {
+            asyncResult.asyncContext.completed();
         }
     );
 }
@@ -38,3 +33,5 @@ export const getGlobal = () => {
 const g = getGlobal();
 
 g.insertSignature = insertSignature;
+
+Office.actions.associate("insertSignature", insertSignature);

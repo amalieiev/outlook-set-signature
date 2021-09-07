@@ -9,8 +9,8 @@ module.exports = async (env, options) => {
     return {
         devtool: "source-map",
         entry: {
-            autorunshared: "./src/runtime/autorunshared.js",
-            autorunweb: "./src/runtime/autorunweb.js",
+            commands: "./src/commands/commands.js",
+            commandsweb: "./src/commands/commandsweb.js",
             taskpane: "./src/taskpane/taskpane.js",
         },
         resolve: {
@@ -19,8 +19,8 @@ module.exports = async (env, options) => {
         plugins: [
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
-                filename: "autorunweb.html",
-                template: "./src/runtime/autorunweb.html",
+                filename: "commands.html",
+                template: "./src/commands/commands.html",
                 chunks: [],
             }),
             new HtmlWebpackPlugin({
