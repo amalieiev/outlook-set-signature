@@ -82,8 +82,8 @@
             <!-- Specify function to call for new message and new appointment events -->
             <ExtensionPoint xsi:type="LaunchEvent">
               <LaunchEvents>
-                <LaunchEvent Type="OnNewMessageCompose" FunctionName="insertSignature" />
-                <LaunchEvent Type="OnNewAppointmentOrganizer" FunctionName="insertSignature" />
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="onNewMessageHandler" />
+                <LaunchEvent Type="OnNewAppointmentOrganizer" FunctionName="onNewMessageHandler" />
               </LaunchEvents>
               <SourceLocation resid="Commands.URL" />
             </ExtensionPoint>

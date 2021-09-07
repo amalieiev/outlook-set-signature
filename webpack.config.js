@@ -10,7 +10,6 @@ module.exports = async (env, options) => {
         devtool: "source-map",
         entry: {
             commands: "./src/commands/commands.js",
-            commandsweb: "./src/commands/commandsweb.js",
             taskpane: "./src/taskpane/taskpane.js",
         },
         resolve: {

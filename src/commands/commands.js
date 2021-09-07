@@ -1,24 +1,13 @@
-function insertSignature(event) {
-    const signature = `
-    <table>
-      <tr>
-        <td>Name</td>
-        <td>Position</td>
-      </tr>
-    </table>
-    `;
+import { insertSignature } from "../helpers/office";
 
-    Office.context.mailbox.item.body.setSignatureAsync(
-        signature,
-        {
-            coercionType: "html",
-            asyncContext: event,
-        },
-        function (asyncResult) {
-            asyncResult.asyncContext.completed();
-        }
-    );
-}
+Office.onReady(() => {
+    // Call to initialise the Office components and enable the event based function
+});
+
+const onNewMessageHandler = async (event) => {
+    await insertSignature();
+    event.completed();
+};
 
 export const getGlobal = () => {
     if (typeof self !== "undefined") {
@@ -32,6 +21,6 @@ export const getGlobal = () => {
 
 const g = getGlobal();
 
-g.insertSignature = insertSignature;
+g.onNewMessageHandler = onNewMessageHandler;
 
-Office.actions.associate("insertSignature", insertSignature);
+Office.actions.associate("onNewMessageHandler", onNewMessageHandler);

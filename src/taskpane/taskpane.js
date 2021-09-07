@@ -1,29 +1,8 @@
+import { insertSignature } from "../helpers/office";
+
 Office.initialize = function () {
     console.log("initialize");
 };
-
-function insertSignature() {
-    console.log("insert signature");
-
-    const signature = `
-    <table>
-      <tr>
-        <td>Name</td>
-        <td>Position</td>
-      </tr>
-    </table>
-    `;
-
-    Office.context.mailbox.item.body.setSignatureAsync(
-        signature,
-        {
-            coercionType: "html",
-        },
-        function () {
-            console.log("inserted");
-        }
-    );
-}
 
 export const getGlobal = () => {
     if (typeof self !== "undefined") {
